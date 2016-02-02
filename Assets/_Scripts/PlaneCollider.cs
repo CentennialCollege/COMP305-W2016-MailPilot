@@ -7,6 +7,9 @@ public class PlaneCollider : MonoBehaviour {
 	private AudioSource _islandSound;
 	private AudioSource _cloudSound;
 
+	// PUBLIC INSTANCE VARIABLES
+	public GameController gameController;
+
 	// Use this for initialization
 	void Start () {
 		// Initialize the audioSources array
@@ -23,9 +26,11 @@ public class PlaneCollider : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Island")) {
 			this._islandSound.Play ();
+			this.gameController.ScoreValue += 100;
 		}
 		if (other.gameObject.CompareTag ("Cloud")) {
 			this._cloudSound.Play ();
+			this.gameController.LivesValue -= 1;
 		}
   	}
 
