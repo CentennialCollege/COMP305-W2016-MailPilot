@@ -26,7 +26,11 @@ public class GameController : MonoBehaviour {
 
 		set {
 			this._livesValue = value;
-			this.LivesLabel.text = "lives: " + this._livesValue;
+			if (this._livesValue <= 0) {
+				this._endGame ();
+			} else {
+				this.LivesLabel.text = "lives: " + this._livesValue;
+			}
 		}
 	}
 		
@@ -35,6 +39,9 @@ public class GameController : MonoBehaviour {
 	public CloudController cloud;
 	public Text LivesLabel;
 	public Text ScoreLabel;
+	public Text GameOverLabel;
+	public PlaneController plane;
+	public IslandController island;
 
 	// Use this for initialization
 	void Start () {
@@ -53,10 +60,17 @@ public class GameController : MonoBehaviour {
 	private void _initialize() {
 		this.ScoreValue = 0;
 		this.LivesValue = 5;
+		this.GameOverLabel.enabled = false;
 
 
 		for (int cloudCount = 0; cloudCount < this.cloudNumber; cloudCount++) {
 			Instantiate (cloud.gameObject);
 		}
+	}
+
+	private void _endGame() {
+		this.GameOverLabel.enabled = true;
+		this.plane.gameObject.SetActive (false);
+		this.island.gameObject.SetActive (false);
 	}
 }
