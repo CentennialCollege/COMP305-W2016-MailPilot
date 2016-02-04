@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 	// PRIVATE INSTANCE VARIABLES
@@ -65,8 +66,8 @@ public class GameController : MonoBehaviour {
 	private void _initialize() {
 		this.ScoreValue = 0;
 		this.LivesValue = 5;
-		this.GameOverLabel.enabled = false;
-		this.HighScoreLabel.enabled = false;
+		this.GameOverLabel.gameObject.SetActive (false);
+		this.HighScoreLabel.gameObject.SetActive (false);
 		this.RestartButton.gameObject.SetActive(false);
 
 
@@ -77,10 +78,10 @@ public class GameController : MonoBehaviour {
 
 	private void _endGame() {
 		this.HighScoreLabel.text = "High Score: " + this._scoreValue;
-		this.GameOverLabel.enabled = true;
-		this.HighScoreLabel.enabled = true;
-		this.LivesLabel.enabled = false;
-		this.ScoreLabel.enabled = false;
+		this.GameOverLabel.gameObject.SetActive (true);
+		this.HighScoreLabel.gameObject.SetActive (true);
+		this.LivesLabel.gameObject.SetActive (false);
+		this.ScoreLabel.gameObject.SetActive (false);
 		this.plane.gameObject.SetActive (false);
 		this.island.gameObject.SetActive (false);
 		this._gameOverSound.Play ();
@@ -90,6 +91,6 @@ public class GameController : MonoBehaviour {
 	// PUBLIC METHODS
 
 	public void RestartButtonClick() {
-		Application.LoadLevel ("Main");
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 }

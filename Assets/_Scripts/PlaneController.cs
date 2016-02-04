@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlaneController : MonoBehaviour {
 	// PUBLIC INSTANCE VARIABLES
-	public float speed = 5f;
+	public float speed = 7f;
 
 	// PRIVATE INSTANCE VARIABLES
 	private float _playerInput;
