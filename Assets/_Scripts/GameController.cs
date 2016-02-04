@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	// PRIVATE INSTANCE VARIABLES
@@ -14,7 +15,7 @@ public class GameController : MonoBehaviour {
 
 		set {
 			this._scoreValue = value;
-			Debug.Log (this._scoreValue);
+			this.ScoreLabel.text = "Score: " + this._scoreValue;
 		}
 	}
 
@@ -25,15 +26,15 @@ public class GameController : MonoBehaviour {
 
 		set {
 			this._livesValue = value;
-			Debug.Log (this._livesValue);
+			this.LivesLabel.text = "lives: " + this._livesValue;
 		}
 	}
 		
-
 	// PUBLIC INSTANCE VARIABLES
 	public int cloudNumber = 3;
 	public CloudController cloud;
-
+	public Text LivesLabel;
+	public Text ScoreLabel;
 
 	// Use this for initialization
 	void Start () {
